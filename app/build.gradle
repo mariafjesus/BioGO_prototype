@@ -1,0 +1,71 @@
+import java.lang.annotation.Annotation
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 31
+    defaultConfig {
+        applicationId "org.tensorflow.lite.examples.classification"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    aaptOptions {
+        noCompress "tflite"
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    lintOptions {
+        abortOnError false
+    }
+    flavorDimensions "tfliteInference"
+    productFlavors {
+       // The TFLite inference is built using the TFLite Support library.
+       support {
+           dimension "tfliteInference"
+       }
+       // Default: The TFLite inference is built using the TFLite Task library (high-level API).
+       taskApi {
+           getIsDefault().set(true)
+           dimension "tfliteInference"
+       }
+   }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    supportImplementation project(":lib_support")
+    taskApiImplementation project(":lib_task_api")
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.0.0'
+    // Pop up dependencies
+    implementation 'com.google.android.material:material:1.0.0'
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'com.google.truth:truth:1.0.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+
+    // Dependency for circular ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //Glide dependencies
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+
+    //SplashScreen
+    implementation 'androidx.core:core-splashscreen:1.0.0-beta02'
+}

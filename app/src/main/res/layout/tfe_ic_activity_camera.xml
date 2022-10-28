@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+ Copyright 2019 The TensorFlow Authors. All Rights Reserved.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License. xmlns:app="http://schemas.android.com/apk/res-auto"
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00000000"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"
+            tools:context="org.tensorflow.lite.examples.classification.CameraActivity">
+
+            <!--<Button
+                android:id="@+id/HomepageReturnBtn"
+                android:layout_width="116dp"
+                android:layout_height="wrap_content"
+                android:text="Homepage" />-->
+
+            <!--<androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="294dp"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/tfe_semi_transparent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/tfl2_logo" />
+            </androidx.appcompat.widget.Toolbar>-->
+        </FrameLayout>
+
+
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/bottom_sheet_layout"
+        layout="@layout/tfe_ic_layout_bottom_sheet"
+        android:visibility="visible" />
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="@id/scrollView"
+        app:layout_constraintStart_toStartOf="parent">
+        <!--menu app, para adicionar mais botões ver: 36min https://www.youtube.com/watch?v=9nWcPPHBzMk-->
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:backgroundTint="@color/tfe_color_primary_dark"
+            app:fabCradleMargin="8dp"
+            app:fabCradleRoundedCornerRadius="30dp"
+            app:fabCradleVerticalOffset="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/bottom_menu"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/cameraBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:backgroundTint="@color/tfe_color_text"
+            app:layout_anchor="@id/bottomAppBar"
+            app:srcCompat="@drawable/camera_icon">
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
